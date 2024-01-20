@@ -1,0 +1,30 @@
+Problem link: https://www.interviewbit.com/problems/pick-from-both-sides/
+
+public class Solution {
+    public int solve(int[] A, int B) {
+      
+      int n=A.length;
+      int currsum=0;
+      
+      for(int i=0;i<B;i++)
+      {
+         currsum+=A[i]; 
+      } 
+      
+      int j=n-1;
+      int k=B-1;
+      int maxsum=currsum;
+      
+      while(j>=0 && k>=0) 
+      {
+        currsum+=A[j--];
+        currsum-=A[k--];
+        maxsum=Math.max(maxsum,currsum);
+      }
+       
+       return maxsum; 
+            
+        
+        
+    }
+}
