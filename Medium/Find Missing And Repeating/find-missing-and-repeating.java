@@ -31,52 +31,52 @@ class GFG {
 
 class Solve {
     int[] findTwoElement(int arr[], int n) {
-       
-      
-        int xr = 0;
-
-        //Step 1: Find XOR of all elements:
-        for (int i = 0; i < arr.length; i++) {
-            xr = xr ^ arr[i];
-            xr = xr ^ (i + 1);
+        
+        int[] res=new int[2];
+        
+        int xr=0;
+        
+        for(int i=0;i<arr.length;i++)
+        {
+            xr=xr^arr[i];
+            xr=xr^(i+1);
         }
-
-        //Step 2: Find the differentiating bit number:
-        int number = (xr & ~(xr - 1));
-
-        //Step 3: Group the numbers:
-        int zero = 0;
-        int one = 0;
-        for (int i = 0; i < arr.length; i++) {
-            //part of 1 group:
-            if ((arr[i] & number) != 0) {
-                one = one ^ arr[i];
-            }
-            //part of 0 group:
-            else {
-                zero = zero ^ arr[i];
-            }
+        
+        int number = xr & ~(xr-1);
+        int zero=0;
+        int one=0;
+        
+        for(int i=0;i<arr.length;i++)
+        {
+            if((arr[i]&number)!=0)
+              one=one^arr[i];
+              else
+              zero=zero^arr[i];
+              
+            if(((i+1) & number)!=0)
+            one=one^(i+1);
+            else
+            zero=zero^(i+1);
         }
-
-        for (int i = 1; i <= arr.length; i++) {
-            //part of 1 group:
-            if ((i & number) != 0) {
-                one = one ^ i;
-            }
-            //part of 0 group:
-            else {
-                zero = zero ^ i;
-            }
+        
+        int count=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==zero)
+            count++;
         }
-
-        // Last step: Identify the numbers:
-        int cnt = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == zero) cnt++;
+        
+        if(count==2)
+        {res[0]=zero;
+         res[1]=one;
         }
-
-        if (cnt == 2) return new int[] {zero, one};
-        return new int[] {one, zero};
-       
+        
+        else
+        {res[1]=zero;
+         res[0]=one;
+            
+        }
+        return res;
+        
     }
 }
