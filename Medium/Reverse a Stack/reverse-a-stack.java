@@ -48,26 +48,30 @@ class Solution
     static void reverse(Stack<Integer> s)
     {
         // add your code here
-        if (s.size() > 0) {
-            int x = s.peek();
-            s.pop();
-            reverse(s);
-            insert_at_bottom(x,s);
-        }
+        if (s.size()==1) {
+            return ;
+            }
+            
+         int temp = s.peek();
+         s.pop();
+         reverse(s);
+         insert_at_bottom(s, temp);
     }
     
     
-    static void insert_at_bottom(int x, Stack<Integer> s)
+    static void insert_at_bottom(Stack<Integer> s, int temp)
     {
- 
-        if (s.isEmpty())
-            s.push(x);
- 
-        else {
-            int a = s.peek();
-            s.pop();
-            insert_at_bottom(x,s);
-            s.push(a);
-        }
+         if(s.isEmpty())
+         {
+             s.push(temp);
+             return;
+         }
+         
+         int temp1=s.peek();
+         s.pop();
+         insert_at_bottom(s, temp);
+         s.push(temp1);
+         return;
+        
     }
 }
