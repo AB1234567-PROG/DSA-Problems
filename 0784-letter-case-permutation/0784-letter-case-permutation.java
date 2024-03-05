@@ -21,10 +21,10 @@ class Solution {
           char c=s2.charAt(0);
           char c1=s2.charAt(0);
           
-          if(c>='a' && c<='z')
+          //if(c>='a' && c<='z')
              c=Character.toUpperCase(c);
-          else if(c>='A' && c<='Z')
-              c=Character.toLowerCase(c);
+          //else if(c>='A' && c<='Z')
+              c1=Character.toLowerCase(c);
           
           generate(res, s1+c1,s2.substring(1));
           if(!(c>='0' && c<='9'))
